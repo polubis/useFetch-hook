@@ -2,6 +2,7 @@ export interface User {
   id: string;
   name: string;
   email: string;
+  avatar: string;
 }
 
 const createUserFactory =
@@ -11,6 +12,7 @@ const createUserFactory =
       id: `id: ${id}`,
       name: `User: ${id}`,
       email: `${id}@gmail.com`,
+      avatar: `https://avatars.dicebear.com/api/open-peeps/user${id}.svg`,
     };
     id++;
 
