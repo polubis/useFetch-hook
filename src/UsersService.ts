@@ -4,16 +4,20 @@ export interface User {
   email: string;
 }
 
-const createUser = (user: Partial<User> = {}): User => {
-  const id = new Date().valueOf().toString();
-  const defaultUser: User = {
-    id: new Date().valueOf().toString(),
-    name: `User: ${id}`,
-    email: `${id}@gmail.com`,
+const createUserFactory =
+  (id = 0) =>
+  (user: Partial<User> = {}): User => {
+    const defaultUser: User = {
+      id: `id: ${id}`,
+      name: `User: ${id}`,
+      email: `${id}@gmail.com`,
+    };
+    id++;
+
+    return { ...defaultUser, ...user };
   };
 
-  return { ...defaultUser, ...user };
-};
+const createUser = createUserFactory();
 
 let USERS: User[] = Array.from({ length: 10 }, () => createUser());
 
