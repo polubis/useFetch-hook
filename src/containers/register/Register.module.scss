@@ -1,0 +1,63 @@
+@import "styles/mixins";
+
+.register {
+  @include col;
+
+  .alert {
+    position: fixed;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+
+  .almostDoneImg {
+    margin: 0 auto;
+
+    & + .description {
+      text-align: center;
+    }
+  }
+
+  .description {
+    @include description;
+    margin: 12px 0 34px 0;
+  }
+
+  .checkbox {
+    margin-bottom: 24px;
+  }
+
+  .divider {
+    height: 6px;
+    width: 200px;
+    margin: 28px auto 50px auto;
+    border-radius: 41px;
+    background: $surfaceDark;
+  }
+
+  & > h3 {
+    @include headingMedium;
+  }
+
+  & > form {
+    @include col;
+    margin-top: 76px;
+    max-width: 420px;
+
+    & > div:not(:last-of-type) {
+      margin-bottom: 28px;
+    }
+
+    & > footer {
+      @include row;
+      margin: 120px 0 0 auto;
+
+      & > button {
+        &:first-of-type {
+          margin-right: 28px;
+        }
+      }
+    }
+  }
+}

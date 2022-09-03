@@ -1,0 +1,17 @@
+@import './media';
+
+@mixin page {
+  min-height: 110vh;
+}
+
+@mixin space {
+  padding: 60px;
+
+  @include tablet {
+    padding: 60px 32px;
+  }
+
+  @include mobile {
+    padding: 60px 24px;
+  }
+}

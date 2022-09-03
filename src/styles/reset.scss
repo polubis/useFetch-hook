@@ -1,0 +1,34 @@
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+ul,
+ol,
+figure,
+button {
+  margin: 0;
+  padding: 0;
+}
+
+button,
+input,
+textarea {
+  &:focus {
+    outline: none;
+  }
+}

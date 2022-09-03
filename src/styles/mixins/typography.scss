@@ -1,0 +1,95 @@
+@import '../palette';
+
+@mixin text {
+  font-family: $fontPrimary;
+  text-transform: none;
+}
+
+@mixin linkSmall {
+  @include text;
+  font-size: 10px;
+}
+
+@mixin link {
+  @include text;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+@mixin labelExtraSmall {
+  @include text;
+  font-size: 10px;
+}
+
+@mixin labelSmall {
+  @include text;
+  font-size: 12px;
+  line-height: 19px;
+}
+
+@mixin label {
+  @include text;
+  font-size: 14px;
+  font-weight: $medium;
+  line-height: 24px;
+}
+
+@mixin labelThin {
+  @include label;
+  font-weight: $thin;
+}
+
+@mixin labelBig {
+  @include text;
+  font-size: 20px;
+  font-weight: $bold;
+}
+
+@mixin headingSmall {
+  @include text;
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: $medium;
+}
+
+@mixin heading {
+  @include text;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: $medium;
+}
+
+@mixin headingMedium {
+  @include text;
+  font-size: 22px;
+  line-height: 26px;
+  font-weight: $medium;
+}
+
+@mixin headingBig {
+  @include text;
+  font-size: 26px;
+  line-height: 38px;
+  font-weight: $medium;
+}
+
+@mixin description {
+  @include text;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: $thin;
+}
+
+@mixin descriptionMedium {
+  @include text;
+  font-size: 16px;
+  line-height: 32px;
+  font-weight: $thin;
+}
+
+@mixin descriptionBig {
+  @include text;
+  font-size: 18px;
+  line-height: 32px;
+  font-weight: $regular;
+}

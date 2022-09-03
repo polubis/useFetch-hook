@@ -1,0 +1,66 @@
+@import 'styles/mixins';
+
+.fieldBase {
+  @include col;
+
+  &.invalid > :nth-child(2) {
+    border-color: $error;
+  }
+
+  label {
+    @include label;
+    @include rowBetween;
+    color: $primary;
+    margin-bottom: 12px;
+  }
+
+  & > input,
+  & > textarea {
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus {
+      -webkit-text-fill-color: $primary;
+      -webkit-box-shadow: 0 0 0px 1000px $surfacePrimary inset;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+  }
+
+  & > :nth-child(2) {
+    @include label;
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: $surfacePrimary;
+    color: $primary;
+    height: 44px;
+    padding: 18px;
+
+    &::placeholder {
+      color: $primary;
+      font-weight: $thin;
+    }
+  }
+
+  textarea {
+    min-height: 160px;
+    resize: vertical;
+  }
+
+  .validation {
+    @include row;
+    height: 12px;
+    color: $error;
+    margin-top: 12px;
+
+    .error {
+      @include labelSmall;
+      @include dottedText;
+    }
+
+    svg {
+      margin-right: 8px;
+      width: 18px;
+      height: 18px;
+    }
+  }
+}

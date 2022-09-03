@@ -1,0 +1,48 @@
+@mixin col {
+  display: flex;
+  flex-flow: column;
+}
+
+@mixin wrap {
+  display: flex;
+  flex-flow: wrap;
+}
+
+@mixin colCenter {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+@mixin row {
+  display: flex;
+  align-items: center;
+}
+
+@mixin rowCenter {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin rowEnd {
+  display: flex;
+  align-content: flex-end;
+}
+
+@mixin centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin rowBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin rowAround {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

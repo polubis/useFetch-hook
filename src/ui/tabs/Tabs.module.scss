@@ -1,0 +1,23 @@
+@import 'styles/mixins';
+
+.tabs {
+  @include row;
+  @include mobile {
+    flex-flow: column;
+  }
+
+  .tab {
+    &:not(:last-of-type) {
+      margin: 0 30px 0 0;
+
+      @include mobile {
+        margin: 0 0 30px 0;
+      }
+    }
+
+    & > span {
+      @include link;
+      text-transform: capitalize;
+    }
+  }
+}

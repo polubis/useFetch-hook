@@ -1,0 +1,23 @@
+@import 'styles/mixins';
+
+.backdrop {
+  background: rgba($black, 0.24);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: $backdropIndex;
+  opacity: 0;
+  animation: animate-backdrop 0.2s ease-in-out forwards;
+
+  @keyframes animate-backdrop {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+}

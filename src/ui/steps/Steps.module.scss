@@ -1,0 +1,75 @@
+@import 'styles/mixins';
+
+.steps {
+  @include rowBetween;
+  width: 100%;
+
+  .stepWrapper {
+    display: flex;
+
+    &.valid {
+      .step {
+        & > div {
+          background: $secondary;
+        }
+
+        & > span {
+          color: $secondary;
+        }
+      }
+
+      .markerValue {
+        stroke: $secondary;
+      }
+    }
+
+    &.invalid {
+      .step {
+        & > div {
+          background: $error;
+        }
+
+        & > span {
+          color: $error;
+        }
+      }
+
+      .markerValue {
+        stroke: $error;
+      }
+    }
+
+    .step {
+      @include colCenter;
+      width: 60px;
+
+      & > div {
+        @include labelBig;
+        @include centered;
+        flex-shrink: 0;
+        width: 60px;
+        height: 60px;
+        background: $primary;
+        border: 5px solid $surfaceSecondary;
+        border-radius: 50%;
+        color: $black;
+      }
+
+      & > span {
+        @include labelSmall;
+        @include noSelect;
+        margin-top: 12px;
+        color: $primary;
+        text-align: center;
+      }
+    }
+
+    .marker {
+      margin-top: 26px;
+
+      line:not(.markerValue) {
+        stroke: $surfaceDark;
+      }
+    }
+  }
+}

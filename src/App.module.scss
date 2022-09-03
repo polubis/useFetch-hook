@@ -1,0 +1,17 @@
+@import "styles/mixins";
+
+.layout {
+  @include col;
+  @include page;
+  @include space;
+  justify-content: center;
+  max-width: 560px;
+  margin: auto;
+
+  .tabs {
+    position: fixed;
+    left: 15px;
+    top: 15px;
+    width: 500px;
+  }
+}
