@@ -23,10 +23,10 @@ const createUser = createUserFactory();
 
 let USERS: User[] = Array.from({ length: 10 }, () => createUser());
 
-const delay = <T>(data: T, time = 1500, errorChance = 50): Promise<T> => {
+const delay = <T>(data: T, time = 1500, errorChance = 1): Promise<T> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const shouldReject = Math.random() * 100 >= errorChance;
+      const shouldReject = Math.random() * 100 <= errorChance;
 
       if (shouldReject) reject(new Error("Something went wrong"));
 

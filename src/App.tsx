@@ -1,3 +1,4 @@
+import { AvatarsGrid } from "components";
 import { useEffect, useState } from "react";
 import { User, UsersService } from "UsersService";
 import css from "./App.module.scss";
@@ -33,18 +34,14 @@ function App() {
 
   return (
     <div className={css.layout}>
-      {loading && <div>Loading users...</div>}
+      {loading && <AvatarsGrid loading />}
       {!loading && !!error && <div>{error}</div>}
       {!loading && !error && (
-        <div>
+        <AvatarsGrid>
           {users.map((user) => (
-            <div key={user.id}>
-              <figure>
-                <img src={user.avatar} alt={user.name} />
-              </figure>
-            </div>
+            <img key={user.id} src={user.avatar} alt={user.name} />
           ))}
-        </div>
+        </AvatarsGrid>
       )}
     </div>
   );
