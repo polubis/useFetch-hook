@@ -1,44 +1,22 @@
-import { AvatarsGrid } from "components";
-import { useEffect, useState } from "react";
-import { User, UsersService } from "UsersService";
+import { AvatarsGrid, ErrorMessage } from "components";
+import { useEffect } from "react";
+import { useUsersFetch } from "useUsersFetch";
 import css from "./App.module.scss";
 
 function App() {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [users, setUsers] = useState<User[]>([]);
-
-  const handleUsersLoad = async () => {
-    setLoading(true);
-    setError("");
-    setUsers([]);
-
-    try {
-      const users = await UsersService.getMany();
-
-      setLoading(false);
-      setError("");
-      setUsers(users);
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        setLoading(false);
-        setError(error.message);
-        setUsers([]);
-      }
-    }
-  };
+  const [usersState, fetchUsers] = useUsersFetch();
 
   useEffect(() => {
-    handleUsersLoad();
+    fetchUsers();
   }, []);
 
   return (
     <div className={css.layout}>
-      {loading && <AvatarsGrid loading />}
-      {!loading && !!error && <div>{error}</div>}
-      {!loading && !error && (
+      {usersState.type === "pending" && <AvatarsGrid loading />}
+      {usersState.type === "fail" && <ErrorMessage error={usersState.error} />}
+      {usersState.type === "done" && (
         <AvatarsGrid>
-          {users.map((user) => (
+          {usersState.data.map((user) => (
             <img key={user.id} src={user.avatar} alt={user.name} />
           ))}
         </AvatarsGrid>
