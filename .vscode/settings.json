@@ -1,0 +1,34 @@
+{
+    "grammarly.selectors": [
+        {
+            "language": "typescriptreact",
+            "scheme": "file",
+            "pattern": "snippets/spaghetti.tsx"
+        },
+        {
+            "language": "typescriptreact",
+            "scheme": "file",
+            "pattern": "snippets/hide-in-use-fetch.tsx"
+        },
+        {
+            "language": "typescriptreact",
+            "scheme": "file",
+            "pattern": "snippets/how-it-should-look-like.tsx"
+        },
+        {
+            "language": "typescript",
+            "scheme": "file",
+            "pattern": "snippets/exh-check.ts"
+        },
+        {
+            "language": "typescriptreact",
+            "scheme": "file",
+            "pattern": "snippets/abort-controller.tsx"
+        },
+        {
+            "language": "typescript",
+            "scheme": "file",
+            "pattern": "snippets/two-facade-hooks.ts"
+        }
+    ]
+}

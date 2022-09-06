@@ -1,8 +1,3 @@
-import { AvatarsGrid, ErrorMessage } from "components";
-import { Renderer, State } from "utils";
-import { User } from "services";
-import css from "./Users.module.scss";
-
 interface UsersProps {
   state: State<User[]>;
   onItemClick: (id: User["id"]) => void;

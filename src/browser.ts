@@ -3,9 +3,12 @@ import { rest, setupWorker } from "msw";
 const URL = "https://jsonplaceholder.typicode.com/photos";
 
 export const worker = setupWorker(
+  rest.get(URL + "/:id", (req, res, ctx) => {
+    return res(ctx.delay(2000), ctx.json({}), ctx.status(200));
+  }),
   rest.get(URL, (req, res, ctx) => {
     return res(
-      ctx.delay(4500),
+      ctx.delay(2000),
       ctx.json([
         {
           albumId: 1,

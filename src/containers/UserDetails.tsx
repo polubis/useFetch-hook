@@ -1,7 +1,7 @@
 import { Avatar, ErrorMessage } from "components";
 import { Button } from "ui";
-import { State } from "useFetch";
-import { User } from "UsersService";
+import { State } from "utils";
+import { User } from "services";
 import css from "./UserDetails.module.scss";
 
 interface UserDetailsProps {

@@ -1,4 +1,4 @@
-import { Signal } from "useFetch";
+import { Signal } from "utils";
 
 interface ResponseObject {
   albumId: number;
@@ -19,8 +19,8 @@ const createUserFactory =
   (id = 0) =>
   (user: Partial<User> = {}): User => {
     const defaultUser: User = {
-      id: `id: ${id}`,
-      name: `User: ${id}`,
+      id: `${id}`,
+      name: `User${id}`,
       email: `${id}@gmail.com`,
       avatar: `https://avatars.dicebear.com/api/open-peeps/user${id}.svg`,
     };
@@ -39,17 +39,27 @@ export const UsersService = {
         signal,
       }
     );
+
+    if (response.status < 200 || response.status >= 400) {
+      return Promise.reject(new Error("Error"));
+    }
+
     const users = (await response.json()) as ResponseObject[];
 
     return users.slice(0, 100).map(() => createUser());
   },
-  getOne: async (signal: Signal, id: User["id"]) => {
+  getOne: async (signal: Signal, id: User["id"]): Promise<User> => {
     const response = await fetch(
-      `https://jsonplaceholder.typicode.com/photos`,
+      `https://jsonplaceholder.typicode.com/photos/${id}`,
       {
         signal,
       }
     );
+
+    if (response.status < 200 || response.status >= 400) {
+      return Promise.reject(new Error("Error"));
+    }
+
     await response.json();
 
     return createUser();
