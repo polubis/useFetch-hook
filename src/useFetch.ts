@@ -23,17 +23,19 @@ export type Signal = AbortController["signal"];
 export type PromiseFn<R> = (signal: Signal) => Promise<R>;
 
 export const useFetch = <R>() => {
-  const abortController = useRef(new AbortController());
+  const ctrl = useRef<AbortController | null>(null);
   const [state, setState] = useState<State<R>>({ type: "idle" });
 
   const handleFetch = async (promiseFn: PromiseFn<R>) => {
+    ctrl.current = new AbortController();
+
     setState({ type: "pending" });
 
     try {
-      const data = await promiseFn(abortController.current.signal);
+      const data = await promiseFn(ctrl.current.signal);
       setState({ type: "done", data });
     } catch (error: unknown) {
-      if (abortController.current.signal) {
+      if (ctrl.current.signal) {
         console.warn("Request aborted");
       }
 
@@ -42,7 +44,7 @@ export const useFetch = <R>() => {
   };
 
   const abort = () => {
-    abortController.current.abort();
+    ctrl.current?.abort();
   };
 
   return [state, handleFetch, abort] as const;
