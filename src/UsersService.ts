@@ -1,3 +1,5 @@
+import { Signal } from "useFetch";
+
 export interface User {
   id: string;
   name: string;
@@ -18,7 +20,7 @@ const delay = <T>(data: T, time = 1500, errorChance = 1): Promise<T> => {
 };
 
 export const UsersService = {
-  getMany: async (signal: AbortController["signal"]) => {
+  getMany: async (signal: Signal) => {
     const response = await fetch("https://jsonplaceholder.typicode.com/users", {
       signal,
     });
@@ -32,5 +34,19 @@ export const UsersService = {
         })
       )
     );
+  },
+  getOne: async (signal: Signal, id: User["id"]) => {
+    const response = await fetch(
+      `https://jsonplaceholder.typicode.com/users/${id}`,
+      {
+        signal,
+      }
+    );
+    const user = (await response.json()) as Omit<User, "avatar">;
+
+    return delay({
+      ...user,
+      avatar: `https://avatars.dicebear.com/api/open-peeps/user${user.id}.svg`,
+    } as User);
   },
 };
