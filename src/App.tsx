@@ -1,14 +1,9 @@
 import { AvatarsGrid, ErrorMessage } from "components";
-import { useEffect } from "react";
 import { useUsersFetch } from "useUsersFetch";
 import css from "./App.module.scss";
 
 function App() {
-  const [usersState, fetchUsers] = useUsersFetch();
-
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+  const [usersState] = useUsersFetch();
 
   return (
     <div className={css.layout}>

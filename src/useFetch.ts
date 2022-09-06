@@ -1,39 +1,49 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
-interface Idle {
+export interface Idle {
   type: "idle";
 }
 
-interface Pending {
+export interface Pending {
   type: "pending";
 }
 
-interface Done<R> {
+export interface Done<R> {
   type: "done";
   data: R;
 }
 
-interface Fail {
+export interface Fail {
   type: "fail";
   error: unknown;
 }
 
-type State<R> = Idle | Pending | Done<R> | Fail;
-type PromiseFn<R> = () => Promise<R>;
+export type State<R> = Idle | Pending | Done<R> | Fail;
+export type Signal = AbortController["signal"];
+export type PromiseFn<R> = (signal: Signal) => Promise<R>;
 
 export const useFetch = <R>() => {
+  const abortController = useRef(new AbortController());
   const [state, setState] = useState<State<R>>({ type: "idle" });
 
   const handleFetch = async (promiseFn: PromiseFn<R>) => {
     setState({ type: "pending" });
 
     try {
-      const data = await promiseFn();
+      const data = await promiseFn(abortController.current.signal);
       setState({ type: "done", data });
     } catch (error: unknown) {
+      if (abortController.current.signal) {
+        console.warn("Request aborted");
+      }
+
       setState({ type: "fail", error });
     }
   };
 
-  return [state, handleFetch] as const;
+  const abort = () => {
+    abortController.current.abort();
+  };
+
+  return [state, handleFetch, abort] as const;
 };
