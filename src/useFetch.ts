@@ -58,5 +58,5 @@ export const useFetch = <R>() => {
     };
   }, []);
 
-  return [state, handleFetch] as const;
+  return [state, handleFetch, abort] as const;
 };

@@ -6,11 +6,17 @@ type ActiveUserId = User["id"] | null;
 
 export const useUserFetch = () => {
   const [activeUserId, setActiveUserId] = useState<ActiveUserId>(null);
-  const [userState, fetchUser] = useFetch<User>();
+  const [userState, fetchUser, abortUserFetch] = useFetch<User>();
 
   const initializeFetch = (id: ActiveUserId) => {
     setActiveUserId(id);
-    id !== null && handleUserFetch(id);
+
+    if (id === null) {
+      abortUserFetch();
+      return;
+    }
+
+    handleUserFetch(id);
   };
 
   const handleUserFetch = (id: User["id"]) => {

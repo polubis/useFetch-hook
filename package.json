@@ -51,6 +51,10 @@
     ]
   },
   "devDependencies": {
-    "@types/webfontloader": "^1.6.34"
+    "@types/webfontloader": "^1.6.34",
+    "msw": "^0.47.0"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
