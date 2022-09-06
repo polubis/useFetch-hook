@@ -4,12 +4,12 @@ import { useUsersFetch } from "useUsersFetch";
 
 function App() {
   const [usersState] = useUsersFetch();
-  const [activeUserId, userState, fetchUser] = useUserFetch();
+  const [activeUserId, userState, changeActiveUserId] = useUserFetch();
 
   return activeUserId === null ? (
-    <Users state={usersState} onItemClick={fetchUser} />
+    <Users state={usersState} onItemClick={changeActiveUserId} />
   ) : (
-    <UserDetails state={userState} />
+    <UserDetails state={userState} onBack={() => changeActiveUserId(null)} />
   );
 }
 

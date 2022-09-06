@@ -1,26 +1,21 @@
 import { useFetch } from "useFetch";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { User, UsersService } from "UsersService";
 
-export const useUserFetch = () => {
-  const [activeUserId, setActiveUserId] = useState<User["id"] | null>(null);
-  const [userState, fetchUser, abort] = useFetch<User>();
+type ActiveUserId = User["id"] | null;
 
-  const initializeFetch = (id: User["id"]) => {
+export const useUserFetch = () => {
+  const [activeUserId, setActiveUserId] = useState<ActiveUserId>(null);
+  const [userState, fetchUser] = useFetch<User>();
+
+  const initializeFetch = (id: ActiveUserId) => {
     setActiveUserId(id);
+    id !== null && handleUserFetch(id);
   };
 
   const handleUserFetch = (id: User["id"]) => {
     fetchUser((signal) => UsersService.getOne(signal, id));
   };
-
-  useEffect(() => {
-    activeUserId !== null && handleUserFetch(activeUserId);
-
-    return () => {
-      abort();
-    };
-  }, [activeUserId]);
 
   return [activeUserId, userState, initializeFetch] as const;
 };

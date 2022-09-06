@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import { Avatar } from "./Avatar";
 import css from "./AvatarsGrid.module.scss";
 
 interface AvatarsGridProps {
@@ -16,12 +17,10 @@ export const AvatarsGrid = ({
     <div className={css.container}>
       {loading &&
         Array.from({ length: placeholders }).map((_, i) => (
-          <div className={css.placeholder} key={i} />
+          <Avatar className={css.placeholder} key={i} />
         ))}
       {(children ?? []).map((child) => (
-        <figure className={css.item} key={child.props.src}>
-          {child}
-        </figure>
+        <Avatar key={child.props.src}>{child}</Avatar>
       ))}
     </div>
   );

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 export interface Idle {
   type: "idle";
@@ -26,7 +26,15 @@ export const useFetch = <R>() => {
   const ctrl = useRef<AbortController | null>(null);
   const [state, setState] = useState<State<R>>({ type: "idle" });
 
+  const abort = () => {
+    if (ctrl.current) {
+      ctrl.current.abort();
+    }
+  };
+
   const handleFetch = async (promiseFn: PromiseFn<R>) => {
+    abort();
+
     ctrl.current = new AbortController();
 
     setState({ type: "pending" });
@@ -37,15 +45,18 @@ export const useFetch = <R>() => {
     } catch (error: unknown) {
       if (ctrl.current.signal) {
         console.warn("Request aborted");
+        return;
       }
 
       setState({ type: "fail", error });
     }
   };
 
-  const abort = () => {
-    ctrl.current?.abort();
-  };
+  useEffect(() => {
+    return () => {
+      abort();
+    };
+  }, []);
 
-  return [state, handleFetch, abort] as const;
+  return [state, handleFetch] as const;
 };

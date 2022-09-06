@@ -4,4 +4,29 @@
   @include col;
   @include page;
   @include space;
+  align-items: center;
+
+  .placeholder {
+    height: 140px;
+    width: 140px;
+  }
+
+  .details {
+    @include col;
+    align-items: center;
+
+    & > *:not(:last-child) {
+      margin-bottom: 12px;
+    }
+
+    & > *:first-child {
+      margin-bottom: 24px;
+      height: 140px;
+      width: 140px;
+    }
+  }
+
+  footer {
+    margin-top: 62px;
+  }
 }
