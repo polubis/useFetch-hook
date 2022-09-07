@@ -1,3 +1,4 @@
+// --- UsersPage.tsx ---
 export const UsersPage = () => {
     // Don't worry - the same code needs to be added for user details.
     const [isLoadingUsers, setIsLoadingUsers] = useState(true);
@@ -30,7 +31,7 @@ export const UsersPage = () => {
       };
     }, []);
   
-    // Some fragile if statements implementation.
+    // Some fragile ifs.
     if (isLoadingUsers) {
       return <AvatarsGrid />;
     }

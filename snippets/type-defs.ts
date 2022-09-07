@@ -1,3 +1,4 @@
+// --- useFetch.ts ---
 export interface Idle {
   type: "idle";
 }
@@ -18,7 +19,7 @@ export interface Fail {
 
 // This will force the developer to use a type guard.
 export type State<T> = Idle | Pending | Done<T> | Fail;
-// Helper type - function which will be passed to handler in hook.
+// Helper type - a function that will be passed to the handler in the hook.
 export type PromiseFn<T> = () => Promise<T>;
-// Alias type for reduction boilerplate.
+// Alias type for boilerplate reduction.
 export type Signal = AbortController["signal"];

@@ -16,7 +16,7 @@ describe("useFetch()", () => {
     jest.clearAllMocks();
   });
 
-  it("assigns initial state to init type", () => {
+  it("assigns initial state to idle", () => {
     const { result } = renderHook(() => useFetch<ExampleModel>());
     expect(result.current[0]).toEqual({ type: "idle" } as Idle);
   });

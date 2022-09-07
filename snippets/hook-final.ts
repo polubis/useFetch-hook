@@ -1,5 +1,6 @@
+// --- useFetch.ts ---
 export const useFetch = <T>() => {
-  // We assigning AbortController to ref because we need to use
+  // We assigning AbortController to the ref because we need to use
   // abort function in consumer component/hook.
   const ctrl = useRef<AbortController | null>(null);
   const [state, setState] = useState<State<T>>({ type: "idle" });
@@ -30,7 +31,7 @@ export const useFetch = <T>() => {
   };
 
   useEffect(() => {
-    // Aborts request when Component which using this hook unmounts.
+    // Aborts request when component unmounts.
     return () => {
       abort();
     };
@@ -39,9 +40,8 @@ export const useFetch = <T>() => {
   return [state, handleFetch, abort] as const;
 };
 
-// Example of usage in component.
-
+// --- UsersComponent.tsx ---
 const UsersComponent = () => {
-  const [users, fetchUsers, abortFetchUsers] = useFetch<User>();
+  const [users, fetchUsers, abortFetchUsers] = useFetch<User[]>();
   // Add any logic here.
 };

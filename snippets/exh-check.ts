@@ -20,27 +20,28 @@ interface Fail {
   error: unknown;
 }
 
-// Union and shared property "type" is required to achieve exhaustiveness checking.
+// Exhaustiveness checking requires union 
+// of types and shared property "type" to work.
 type State<T> = Idle | Pending | Done<T> | Fail;
 
 const state = { type: "idle" } as State<{ id: number }>;
 
 const Log = () => {
-  // idle, pending, done, fail
+  // idle, pending, done, fail.
   if (state.type === "idle") {
     console.log(state.type);
     // console.log(state.data); Compilation error!
     return;
   }
 
-  // pending, done, fail
+  // pending, done, fail.
   if (state.type === "done") {
     console.log(state.type);
     console.log(state.data); // All ok!
     return;
   }
 
-  // pending, fail
+  // pending, fail.
   if (state.type === "fail") {
     console.log(state.type);
     console.log(state.error); // All ok!

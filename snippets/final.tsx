@@ -29,7 +29,7 @@ export const Users = ({ state, onItemClick }: UsersProps) => {
   );
 };
 
-// --- UserDetail.tsx ---
+// --- UserDetails.tsx ---
 interface UserDetailsProps {
   state: State<User>;
   onBack: () => void;
@@ -37,6 +37,7 @@ interface UserDetailsProps {
 
 export const UserDetails = ({ state, onBack }: UserDetailsProps) => {
   return (
+    // Renderer not used to show difference.
     <div className={css.layout}>
       {state.type === "pending" && <Avatar className={css.placeholder} />}
       {state.type === "fail" && <ErrorMessage error={state.error} />}
@@ -66,7 +67,7 @@ export const UserDetails = ({ state, onBack }: UserDetailsProps) => {
   );
 };
 
-// --- UsersPage ---
+// --- UsersPage.tsx ---
 export const UsersPage = () => {
   const [usersState] = useUsersFetch();
   const [activeUserId, userState, changeActiveUserId] = useUserFetch();

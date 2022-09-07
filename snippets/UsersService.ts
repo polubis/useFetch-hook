@@ -1,3 +1,4 @@
+// --- UsersService.ts ---
 export const UsersService = {
   getMany: async (signal: Signal) => {
     const response = await fetch(

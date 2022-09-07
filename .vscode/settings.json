@@ -29,6 +29,10 @@
             "language": "typescript",
             "scheme": "file",
             "pattern": "snippets/two-facade-hooks.ts"
+        },
+        {
+            "language": "typescript",
+            "scheme": "file"
         }
     ]
 }

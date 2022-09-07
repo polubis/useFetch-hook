@@ -6,13 +6,13 @@ export const useUserFetch = () => {
   const [userState, fetchUser, abortUserFetch] = useFetch<User>();
 
   const handleUserFetch = (id: User["id"]) => {
-    // Passing signal to promise function which will add it to fetch.
+    // Passing signal to promise function.
     fetchUser((signal) => UsersService.getOne(signal, id));
   };
 
   const initializeFetch = (id: ActiveUserId) => {
     setActiveUserId(id);
-    // Abort any new request, also when it is equal to null.
+    // Aborts request.
     abortUserFetch();
 
     id !== null && handleUserFetch(id);

@@ -6,7 +6,7 @@ export interface RendererProps<T> {
   children: (data: T) => ReactElement; // Renders component when done.
 }
 
-// We passing generic type for typesafety.
+// Generic type for typesafety.
 // It must be same type which we passing to useFetch.
 export const Renderer = <T extends unknown>({
   state,

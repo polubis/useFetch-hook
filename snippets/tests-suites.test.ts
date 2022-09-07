@@ -1,5 +1,5 @@
 describe("useFetch()", () => {
-  it("assigns initial state to init type", () => {});
+  it("assigns initial state to idle", () => {});
 
   it("injects signal to promise function", async () => {});
 

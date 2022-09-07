@@ -1,3 +1,4 @@
+// --- useUsersFetch.ts ---
 export const useUsersFetch = () => {
   // It still stinks.
   const [isLoadingUsers, setIsLoadingUsers] = useState(true);
@@ -33,8 +34,9 @@ export const useUsersFetch = () => {
   return [isLoadingUsers, loadingUsersError, users]
 };
 
+// --- UsersPage.tsx ---
 export const UsersPage = () => {
-  // Now this component code is more elegant.
+  // Now code is more elegant.
   const [isLoadingUsers, loadingUsersError, users] = useUsersFetch();
 
   if (isLoadingUsers) {

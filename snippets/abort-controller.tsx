@@ -14,13 +14,13 @@ const UserDetails = () => {
 
   // Code inside is called always when id changes.
   useEffect(() => {
-    // Once instance per request.
+    // One instance per request.
     const ctrl = new AbortController();
 
     const handleDetailsLoad = async () => {
       try {
         // Signal needs to be passed to fetch.
-        const response = await fetch("[ADD_HERE_URL]", { signal: ctrl.signal });
+        const response = await fetch("[ADD_URL_HERE]", { signal: ctrl.signal });
 
         if (response.status < 200 || response.status >= 400) {
           throw new Error("Server error");
